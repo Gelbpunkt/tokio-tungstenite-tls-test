@@ -1,0 +1,21 @@
+[package]
+name = "tokio-tungstenite-tls-test"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+futures-util = { version = "0.3", default-features = false }
+tt_14 = { version = "0.14", default-features = false, package = "tokio-tungstenite", features = ["connect", "rustls-tls"] }
+tt_15 = { version = "0.15", default-features = false, package = "tokio-tungstenite", features = ["connect", "rustls-tls"] }
+tt_git = { git = "https://github.com/snapview/tokio-tungstenite", branch = "master", package = "tokio-tungstenite", default-features = false, features = ["connect", "rustls-tls-webpki-roots"] }
+tokio = { version = "1", default-features = false, features = ["rt", "macros"] }
+
+[profile.release]
+codegen-units = 1
+debug = false
+incremental = false
+lto = true
+opt-level = 3
+panic = "abort"
